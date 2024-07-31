@@ -177,8 +177,8 @@ Extremely high starting temperatures
 ```
 TANK_WATER_TEMPERATURE 1000
 ```
-```
 **Expected Output**: Warning messages printed to console
+```
 ...
 WARNING: Temperature too high to calculate water dynamic viscosity
 WARNING: Temperature too high to calculate water dynamic viscosity
