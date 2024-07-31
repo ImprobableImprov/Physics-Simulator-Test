@@ -48,16 +48,20 @@ Run the simulation:
 **Expected Results**: Given the input files are located within the `input` directory (as outlined above) no warning will be displayed and the resulting overrides and environemnt fields will populate as outlined in the below test cases. Otherwise a warning will appear in the console reading "Error opening input file: input/[input file name]" abd the overrides or environemnt variables will not be displayed in the output text file `simulaiton_log.txt`.
 
 ### 2. INPUT: Overrides
-The `overrides.txt` file allows the user to set starting values for the simulation that do not relate to the environemnt. For example, overriding the default thickness of the water storage tank's walls by combining `TANK_THICKNESS` and the corisponding, space-seperated thickness value on a distinct line within the file. See the below section `Override Options` for more details on all overrides available
+The `overrides.txt` file allows the user to set starting values for the simulation that do not relate to the environemnt. For example, overriding the default thickness of the water storage tank's walls by combining `TANK_THICKNESS` and the corisponding, space-seperated thickness value on a new line within the file. See the below section `Override Options` for more details on all overrides available
 
  #### Test case 2
  Given the following entries in overrides.txt
 ```overrides.txt
 SIMULATION_DURATION 11
+SIMULATION_TIME_STEP 3
+simulation_duration 9
 SIMULATION_TIME_STEP 2
 ```
- **Expected Result**: Irrespective of the order of the above overrides, the output file `simulaion_log.txt` gives the following result in the `Time (s)` column. Additionally, as can be seen in this example, since the end time of the simulation at time-equals 11 is not divisible by the time step (2), it is not displayed.
-```simulation_log.txt
+ **Expected Result**: 
+ 1. Irrespective of the order of the above overrides, the output file `simulaion_log.txt` gives the following result in the `Time (s)` column.
+ 2. As can be seen in this example, since the end time of the simulation at time-equals 11 is not divisible by the time step (2), it is not displayed.
+ ```simulation_log.txt
   Time (s)         ...
          0         ...
          2         ...
@@ -65,6 +69,12 @@ SIMULATION_TIME_STEP 2
          6         ...
          8         ...
         10         ...
+```
+ 3. A warning message is displlayed in the console indicating "Unknown parameter: simulation_duration" because the input is case-sensitve and thus does not recognize "simulation_duration" as a valid input
+ 4. A warning message is displayed in the console indicating that SIMULATION_TIME_STEP. The last value overriden (from top to bottom) shall be used
+```
+Unknown parameter: simulation_duration
+Warning: input/overrides.txt contains multiple overrides for SIMULATION_TIME_STEP
 ```
 -----------------------------------------------
  #### Test case 3: 
@@ -166,8 +176,8 @@ Extremely high starting temperatures
 ```
 TANK_WATER_TEMPERATURE 1000
 ```
-```
 **Expected Output**: Warning messages printed to console
+```
 ...
 WARNING: Temperature too high to calculate water dynamic viscosity
 WARNING: Temperature too high to calculate water dynamic viscosity
