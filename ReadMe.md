@@ -72,6 +72,11 @@ SIMULATION_TIME_STEP 2
 ```
 3. A warning will be printed to the console: "Unknown parameter: simulation_duration". Since the overrides are case-sensitive, the lowercase "simulation_duration" is rejected and unused.
 4. A warning will be printed to the console: "Warning: input/overrides.txt contains multiple overrides for SIMULATION_TIME_STEP". The final override value (from top to bottom) will be used.
+Console Output:
+```
+Unknown parameter: simulation_duration
+Warning: input/overrides.txt contains multiple overrides for SIMULATION_TIME_STEP
+```
 -----------------------------------------------
  #### Test case 3: 
 Given the following `overrides.txt` input file:
