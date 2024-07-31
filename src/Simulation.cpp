@@ -196,7 +196,7 @@ void Simulation::run_simulation(const std::string &sim_overrides_file,
     print_data_line(output_file);
 
     current_time_s_ = 0.0;
-    while (current_time_s_ <= duration_s_)
+    while (current_time_s_ <= duration_s_ - 1)
     {
         tank_.one_second_update_temperature(pipe_into_tank_.get_water_out_temperature_C(),
                                             environment_,
